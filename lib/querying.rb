@@ -15,9 +15,9 @@ def select_name_and_series_subgenres_of_authors
 end
 
 def select_series_title_with_most_human_characters
-  "SELECT Series.title, Characters.species FROM series JOIN Characters ON Series.id = Characters.series_id GROUP BY Characters.species HAVING COUNT(Characters.species) ORDER BY Characters.species DESC LIMIT 1;"
+  "SELECT Series.title, Characters.species FROM series JOIN Characters ON Series.id = Characters.series_id WHERE Characters.species = 'human' GROUP BY Characters.species HAVING COUNT(Characters.species) ORDER BY Characters.species DESC LIMIT 1;"
 end
 
 def select_character_names_and_number_of_books_they_are_in
-  "SELECT Characters.name, COUNT(Character_books.character_id) AS book_count FROM Characters LEFT JOIN Character_books ON Characters.id = Character_books.character_id WHERE Characters.species = 'human' GROUP BY Characters.name ORDER BY book_count DESC;"
+  "SELECT Characters.name, COUNT(Character_books.character_id) AS book_count FROM Characters LEFT JOIN Character_books ON Characters.id = Character_books.character_id GROUP BY Characters.name ORDER BY book_count DESC;"
 end
